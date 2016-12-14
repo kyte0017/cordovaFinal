@@ -4,8 +4,7 @@ let teams = [];
 function init() {
     if (!localStorage.getItem("kyte0017")) {
         getData();
-    }
-    else {
+    } else {
         let parseMe = localStorage.getItem("kyte0017");
         let savedData = JSON.parse(parseMe);
         displayData(savedData);
@@ -25,16 +24,22 @@ function getData() {
         return response.json();
     }).then(function (data) {
         displayData(data);
-    }).catch(function (err) {
-        console.log("Error" + err);
+    }, function(error) {
+        console.log(error);
     });
 }
 
-function displayData(data) {
 
+
+
+function displayData(data) {
+    
+//*************** ORIGINAL ********************    
+ console.log("Its Fecthing!");
+    console.log(data);
     let scores = data.scores;
     //        //        console.log(scores);
-    let teams = data.teams;
+    teams = data.teams;
     var standings = [];
     //        //The Id and Name of Each Team
     teams.forEach(function (value) {
@@ -48,7 +53,9 @@ function displayData(data) {
             , "L": 0
             , "T": 0
         });
-        //            //            console.log(standings);
+                                console.log(standings);
+        
+        
     });
     let numlist = document.getElementsByClassName("num_list")[0];
     //clearing my previous list
@@ -66,18 +73,18 @@ function displayData(data) {
         dateItem.textContent = item.date;
         // Each Team
         console.log(nameLookup(item.games[0].away));
-        console.log("HERE!!");
+        
         let VS1 = nameLookup(item.games[0].away);
         let VS2 = nameLookup(item.games[0].home);
         let VS3 = nameLookup(item.games[1].away);
         let VS4 = nameLookup(item.games[1].home);
         //The Score
-        let awayOne = item.games[0].away_score;
-        let homeOne = item.games[0].home_score;
-        let awayTwo = item.games[1].away_score;
-        let homeTwo = item.games[1].home_score;
-        gameOne.textContent = (VS1 + " " + awayOne + " VS. " + VS2 + " " + homeOne);
-        gameTwo.textContent = (VS3 + " " + awayTwo + " VS. " + VS4 + " " + homeTwo);
+        let awayOne = teamLogos(nameLookup(item.games[0].away));
+        let homeOne = teamLogos(nameLookup(item.games[0].home));
+        let awayTwo = teamLogos(nameLookup(item.games[1].away));
+        let homeTwo = teamLogos(nameLookup(item.games[1].home));
+        gameOne.innerHTML = (awayOne + "&nbsp;" + VS1 + "&nbsp;" +  "VS." +  "&nbsp;" + VS2 + "&nbsp;" + homeOne);
+        gameTwo.innerHTML = (awayTwo + "&nbsp;" + VS3 + "&nbsp;" + "VS." + "&nbsp;" + VS4 + "&nbsp;" + homeTwo);
         //Appending conatiner into ul
         numlist.appendChild(container);
         container.appendChild(dateItem);
@@ -113,17 +120,20 @@ function displayData(data) {
 }
 //ID to NAME LOOKUP FUNCTION
 function nameLookup(id) {
+    console.log("id: ", id);
     let nm = "";
-    let parseMe = localStorage.getItem("kyte0017");
-    let savedData = JSON.parse(parseMe);
-
-    savedData.teams.forEach(function (item) {
-        if (item.id == id) {
-            nm = item.name;
-        }
-    })
-    return nm;
-}
+//    let parseMe = localStorage.getItem("kyte0017");
+//    let savedData = JSON.parse(parseMe);
+    
+//    console.log(savedData);
+    console.log("teams", teams);
+    teams.forEach(function (item) {
+            if (item.id == id) {
+                nm = item.name;
+            }
+        })
+        return nm;
+    }
 //SORTING STANDINDS ARRAY
 function sortMe(standings) {
     standings.sort(function (a, b) {
@@ -199,6 +209,8 @@ function saveLocal(standings, scores) {
         , scores: scores
     };
     jsonData = JSON.stringify(jsonData);
+    
+    console.log(jsonData);
     localStorage.setItem("kyte0017", jsonData);
     //    localStorage.setItem("kyte0017",'["name", "email", "phoneNum"]');
 //    console.log(standings);
@@ -216,7 +228,27 @@ function displayTable(standings) {
         //            console.log("WE ARE HERE!! ");
         //            console.log(item);
         let row = document.createElement("tr");
-        row.innerHTML = "<td>" + item.id + "</td><td>" + item.name + "</td><td>" + item.W + "</td><td>" + item.L + "</td><td>" + item.T + "</td>";
+        row.innerHTML = "<td>" + item.id + "</td><td>" + teamLogos(item.name)+ " " + item.name + "</td><td>" + item.W + "</td><td>" + item.L + "</td><td>" + item.T + "</td>";
         tableList.appendChild(row);
     });
 }
+
+ function teamLogos(teams){
+    switch(teams) {
+                case "Hufflepuff" || "hufflepuff":
+                    return '<img src="img/team-icon/hufflepuff.png">'
+                    break;
+                case "Gryffindor" || "gryffindor":
+                    return '<img src="img/team-icon/gryffindor.png">';
+                    break;
+                case "Slytherin" || "slytherin":
+                    return '<img src="img/team-icon/slytherin.png">';
+                    break;
+                case "Ravenclaw" || "ravenclaw":
+                    return '<img src="img/team-icon/ravenclaw.png">';
+                    break;
+                default:
+                    return "TeamNotFound";
+            }
+}
+  
