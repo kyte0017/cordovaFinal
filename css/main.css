@@ -1,0 +1,127 @@
+ul {
+    text-align: center;
+    display: block;
+}
+
+.dateItem {
+    font-weight: bold;
+}
+
+.container {
+    background: lightyellow;
+    margin: 1rem;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.container:nth-child(2n + 1) {
+    background: lightblue;
+}
+
+footer {
+    display: block;
+    clear: left;
+}
+
+body {
+    padding: 50px;
+}
+
+
+/*The Refresh Button*/
+
+.fab {
+    background-image: url(Asset%207.svg);
+    background-repeat: no-repeat;
+    background-color: hsl(354, 40%, 70%);
+    background-position: center center;
+    background-size: 50% 50%;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    bottom: 5rem;
+    right: 2rem;
+    box-shadow: 2px 2px 8px hsl(0, 0%, 0%);
+}
+
+.fab:hover {
+    background-color: hsl(354, 50%, 60%);
+}
+
+
+/*NAVIGATION*/
+
+[data-role="nav"] {
+    position: fixed;
+    z-index: 30;
+    bottom: 0;
+    width: 100%;
+    height: 4rem;
+    background-color: #ccc;
+}
+
+.tabs {
+    list-style: none;
+}
+
+.tabs li {
+    float: left;
+    width: 50%;
+}
+
+.tabs a {
+    display: block;
+    line-height: 2rem;
+    font-size: 2rem;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.tabs a:first-child {
+    border-right: 1px solid #333;
+}
+
+
+/*END NAVIGATION*/
+
+
+/* Start 2 page display */
+
+[data-role="page"] {
+    width: 100%;
+    min-height: 100vh;
+    /*    position: absolute;*/
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 10;
+    padding-bottom: 5rem;
+    /* to match the height of the nav bar */
+    padding-top: 4rem;
+    /* leaving space for the heading */
+}
+
+[data-role="page"].active {
+    display: block;
+    z-index: 20;
+}
+
+
+/* End 2 page display */
+
+#teamStandings {
+    border-collapse: collapse;
+    border: 1px solid #666;
+    width: 90%;
+    margin: 2rem auto;
+}
+
+#teamStandings th,
+#teamStandings td {
+    border: 1px solid #999;
+    text-align: center;
+    padding: 0.5rem 0.5rem;
+    line-height: 2rem;
+}

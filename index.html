@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viweport" content="width=device-width">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap-flex.min.css">
+    <link rel="stylesheet" href="css/main.css"> </head>
+
+<body>
+    <header>
+        <h1>Cordova Template
+        </h1> </header>
+    <main>
+         <div id="gameresults" class="page active" data-role="page">
+        <section id="results" class="active">
+            <h2 class=pages>Results</h2>
+            <div class="num_list"></div>
+        </section>
+        </div>
+        
+        
+      <div id="standings" class="page" data-role="page">
+                        <h2>Standings</h2>
+
+               <table class="tableList">
+                <tr>
+                    <th class="ID">ID</th>
+                    <th class="TeamName">Name</th>
+                    <th class="W">W</th>
+                    <th class="L">L</th>
+                    <th class="T">T</th>
+                </tr>
+            </table>
+        </div>
+   
+    </main>
+    <footer>
+         <div class="fab" id="myBtn"> 
+          
+        </div>
+        <p> &copy;
+            <time datetime="2016">2016</time> Hayden Kyte </p>
+    </footer>
+         
+         <section data-role="nav" id="nav">
+        <ul class="tabs">
+            <li><a id="nav_gameresults" href="#gameresults">Results</a></li>
+            <li><a id="nav_standings" href="#standings">Standings</a></li>
+        </ul>
+        
+    </section>
+    
+    <script src="js/main.js"></script>
+</body>
+
+</html>
